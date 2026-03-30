@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import BackedBy from "@/components/BackedBy";
 import Pricing from "@/components/Pricing";
+import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <Features />
         <BackedBy />
         <Pricing />
+        <Faq />
       </main>
       <Footer />
     </>

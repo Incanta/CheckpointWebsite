@@ -42,10 +42,10 @@ const tiers: Tier[] = [
       label: "",
     },
     features: [
-      "Checkouts & file locking",
+      "Checkouts",
+      "File locking",
       "Branching",
-      "CLI, desktop & web clients",
-      "Open source self-host option",
+      "Unreal Engine, Desktop, CLI, & web clients",
     ],
     cta: "Get Started",
     ctaHref: "https://app.checkpointvcs.com",
@@ -302,7 +302,7 @@ export default function Pricing() {
             500 GB bandwidth included. Self-hosted storage is managed by you.
           </p>
           <p className="text-xs text-muted/60">
-            A <span className="text-muted/80 font-medium">$5/mo minimum</span> applies to cloud accounts. If your usage falls below that, you&apos;re billed $5 and the difference rolls over as credit toward future months.
+            If you have an outstanding balance with insufficient credit, we charge a <span className="text-muted/80 font-medium">$5 minimum{" "}</span>. Any remainder rolls over as credit toward future months.
           </p>
         </div>
       </div>
