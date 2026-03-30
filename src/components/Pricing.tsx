@@ -20,6 +20,7 @@ interface Tier {
   features: string[];
   selfHostedFeatures?: string[];
   cloudFeatures?: string[];
+  selfHostedAddons?: string[];
   highlighted?: boolean;
   cta: string;
   ctaHref: string;
@@ -96,6 +97,10 @@ const tiers: Tier[] = [
       "Enterprise SAML / SSO",
       "Priority support",
     ],
+    selfHostedAddons: [
+      "Enterprise SAML / SSO",
+      "Priority support",
+    ],
     cta: "Get Started",
     ctaHref: "https://app.checkpointvcs.com",
   },
@@ -163,6 +168,8 @@ export default function Pricing() {
                 ? tier.cloudFeatures || []
                 : tier.selfHostedFeatures || []),
             ];
+            const addons =
+              mode === "self-hosted" ? tier.selfHostedAddons || [] : [];
 
             return (
               <div
@@ -232,6 +239,38 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
+
+                {/* Self-hosted add-ons */}
+                {addons.length > 0 && (
+                  <div className="mb-8">
+                    <p className="text-xs uppercase tracking-wider text-muted/50 font-medium mb-3">
+                      Available add-ons · Contact us
+                    </p>
+                    <ul className="space-y-3">
+                      {addons.map((addon) => (
+                        <li
+                          key={addon}
+                          className="flex items-start gap-3 text-sm"
+                        >
+                          <svg
+                            className="w-5 h-5 text-muted/40 shrink-0 mt-0.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M12 4.5v15m7.5-7.5h-15"
+                            />
+                          </svg>
+                          <span className="text-muted/50">{addon}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 {/* CTA */}
                 <a
