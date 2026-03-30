@@ -21,6 +21,7 @@ interface Tier {
   selfHostedFeatures?: string[];
   cloudFeatures?: string[];
   selfHostedAddons?: string[];
+  cloudAddons?: string[];
   highlighted?: boolean;
   cta: string;
   ctaHref: string;
@@ -101,6 +102,10 @@ const tiers: Tier[] = [
       "Enterprise SAML / SSO",
       "Priority support",
     ],
+    cloudAddons: [
+      "Single-tenant deployment",
+      "Bring your own storage (BYOS)",
+    ],
     cta: "Get Started",
     ctaHref: "https://app.checkpointvcs.com",
   },
@@ -169,7 +174,9 @@ export default function Pricing() {
                 : tier.selfHostedFeatures || []),
             ];
             const addons =
-              mode === "self-hosted" ? tier.selfHostedAddons || [] : [];
+              mode === "self-hosted"
+                ? tier.selfHostedAddons || []
+                : tier.cloudAddons || [];
 
             return (
               <div
