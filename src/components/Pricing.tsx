@@ -295,11 +295,16 @@ export default function Pricing() {
           })}
         </div>
 
-        {/* Storage note */}
-        <p className="text-center text-xs text-muted/60 mt-8 max-w-lg mx-auto">
-          Cloud storage: $1/mo for up to 10 GB, then $4.50 per additional 50 GB/mo.
-          500 GB bandwidth included. Self-hosted storage is managed by you.
-        </p>
+        {/* Storage & billing notes */}
+        <div className="mt-8 space-y-2 max-w-lg mx-auto text-center">
+          <p className="text-xs text-muted/60">
+            Cloud storage: $1/mo for up to 10 GB, then $4.50 per additional 50 GB/mo.
+            500 GB bandwidth included. Self-hosted storage is managed by you.
+          </p>
+          <p className="text-xs text-muted/60">
+            A <span className="text-muted/80 font-medium">$5/mo minimum</span> applies to cloud accounts. If your usage falls below that, you&apos;re billed $5 and the difference rolls over as credit toward future months.
+          </p>
+        </div>
       </div>
     </section>
   );
