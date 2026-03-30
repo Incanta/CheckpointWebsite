@@ -18,6 +18,8 @@ interface Tier {
     label: string;
   };
   features: string[];
+  selfHostedFeatures?: string[];
+  cloudFeatures?: string[];
   highlighted?: boolean;
   cta: string;
   ctaHref: string;
@@ -30,7 +32,7 @@ const tiers: Tier[] = [
     cloud: {
       writePrice: "$4",
       readPrice: "$2",
-      label: "/mo per user",
+      label: "/mo per active user",
     },
     selfHosted: {
       writePrice: "Free",
@@ -52,12 +54,12 @@ const tiers: Tier[] = [
     cloud: {
       writePrice: "$9",
       readPrice: "$4",
-      label: "/mo per user",
+      label: "/mo per active user",
     },
     selfHosted: {
       writePrice: "$2",
       readPrice: "$1",
-      label: "/mo per user",
+      label: "/mo per active user",
     },
     features: [
       "Everything in Basic",
@@ -74,18 +76,23 @@ const tiers: Tier[] = [
     name: "Studio",
     description: "Enterprise-grade for large studios and organizations.",
     cloud: {
-      writePrice: "$29",
-      readPrice: "$14",
-      label: "/mo per user",
+      writePrice: "$19",
+      readPrice: "$9",
+      label: "/mo per active user",
     },
     selfHosted: {
       writePrice: "$6",
       readPrice: "$3",
-      label: "/mo per user",
+      label: "/mo per active user",
     },
     features: [
       "Everything in Pro",
       "Data replicas",
+    ],
+    selfHostedFeatures: [
+      "Cloudflare R2 storage",
+    ],
+    cloudFeatures: [
       "Enterprise SAML / SSO",
       "Priority support",
     ],
@@ -149,6 +156,14 @@ export default function Pricing() {
             const isFree =
               pricing.writePrice === "Free" && pricing.readPrice === "Free";
 
+
+            const tierFeatures = [
+              ...tier.features,
+              ...(mode === "cloud"
+                ? tier.cloudFeatures || []
+                : tier.selfHostedFeatures || []),
+            ];
+
             return (
               <div
                 key={tier.name}
@@ -195,7 +210,7 @@ export default function Pricing() {
 
                 {/* Features list */}
                 <ul className="space-y-3 mb-8">
-                  {tier.features.map((feature) => (
+                  {tierFeatures.map((feature) => (
                     <li
                       key={feature}
                       className="flex items-start gap-3 text-sm"
