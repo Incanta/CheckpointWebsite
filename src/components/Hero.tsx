@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { COMING_SOON } from "@/config";
 
 export default function Hero() {
   return (
@@ -70,12 +71,20 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="https://app.checkpointvcs.com"
-            className="group relative rounded-full bg-primary px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02]"
-          >
-            <span className="relative z-10">Get Started Free</span>
-          </a>
+          {COMING_SOON ? (
+            <span
+              className="group relative rounded-full bg-muted/30 px-8 py-3.5 text-base font-semibold text-muted cursor-not-allowed"
+            >
+              <span className="relative z-10">Coming Soon</span>
+            </span>
+          ) : (
+            <a
+              href="https://app.checkpointvcs.com"
+              className="group relative rounded-full bg-primary px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02]"
+            >
+              <span className="relative z-10">Get Started Free</span>
+            </a>
+          )}
           <a
             href="https://github.com/Incanta/Checkpoint"
             target="_blank"

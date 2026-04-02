@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { COMING_SOON } from "@/config";
 
 type HostingMode = "cloud" | "self-hosted";
 
 interface Tier {
   name: string;
+  enabled: boolean;
   description: string;
   cloud: {
     writePrice: string;
@@ -30,10 +32,11 @@ interface Tier {
 const tiers: Tier[] = [
   {
     name: "Basic",
+    enabled: true,
     description: "Core version control for small teams getting started.",
     cloud: {
-      writePrice: "$4",
-      readPrice: "$2",
+      writePrice: "$3",
+      readPrice: "$1.50",
       label: "/mo per active user",
     },
     selfHosted: {
@@ -52,10 +55,11 @@ const tiers: Tier[] = [
   },
   {
     name: "Pro",
+    enabled: true,
     description: "Collaboration features for growing teams.",
     cloud: {
-      writePrice: "$9",
-      readPrice: "$4",
+      writePrice: "$6",
+      readPrice: "$3",
       label: "/mo per active user",
     },
     selfHosted: {
@@ -65,10 +69,9 @@ const tiers: Tier[] = [
     },
     features: [
       "Everything in Basic",
+      "Issues",
       "Pull requests & reviews",
       "Shelves",
-      "Horde integration",
-      "Artifacts",
     ],
     highlighted: true,
     cta: "Get Started",
@@ -76,10 +79,11 @@ const tiers: Tier[] = [
   },
   {
     name: "Studio",
+    enabled: true,
     description: "Enterprise-grade for large studios and organizations.",
     cloud: {
-      writePrice: "$19",
-      readPrice: "$9",
+      writePrice: "$14",
+      readPrice: "$7",
       label: "/mo per active user",
     },
     selfHosted: {
@@ -89,17 +93,18 @@ const tiers: Tier[] = [
     },
     features: [
       "Everything in Pro",
-      "Data replicas",
+      "Artifacts (CI build outputs, like UnrealGameSync)",
+      // "Data replicas",
     ],
     selfHostedFeatures: [
       "Cloudflare R2 storage",
     ],
     cloudFeatures: [
-      "Enterprise SAML / SSO",
+      // "Enterprise SAML / SSO",
       "Priority support",
     ],
     selfHostedAddons: [
-      "Enterprise SAML / SSO",
+      // "Enterprise SAML / SSO",
       "Priority support",
     ],
     cloudAddons: [
@@ -126,7 +131,7 @@ export default function Pricing() {
             Pricing
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            Simple, transparent pricing
+            Usage-based pricing
           </h2>
           <p className="mx-auto max-w-2xl text-muted text-lg mb-8">
             Pay per active user. Storage starts at $1/mo for up to 10 GB, then
@@ -160,7 +165,7 @@ export default function Pricing() {
 
         {/* Pricing cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {tiers.map((tier) => {
+          {tiers.filter(tier => tier.enabled).map((tier) => {
             const pricing =
               mode === "cloud" ? tier.cloud : tier.selfHosted;
             const isFree =
@@ -181,7 +186,7 @@ export default function Pricing() {
             return (
               <div
                 key={tier.name}
-                className={`relative rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] ${
+                className={`relative rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] flex flex-col ${
                   tier.highlighted
                     ? "glass-primary glow-primary"
                     : "glass"
@@ -195,7 +200,35 @@ export default function Pricing() {
                   </div>
                 )}
 
-                <h3 className="text-xl font-bold mb-2">{tier.name}</h3>
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="text-xl font-bold">{tier.name}</h3>
+
+                    {tier.name === "Basic" && (
+                      <a
+                        href="https://github.com/Incanta/Checkpoint"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 glass rounded-full px-2.5 py-2 text-xs font-medium text-muted hover:text-foreground transition-colors leading-none"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse shrink-0" />
+                        Open Source
+                        <svg
+                          className="w-3 h-3"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+
                 <p className="text-sm text-muted mb-6">{tier.description}</p>
 
                 {/* Price */}
@@ -216,7 +249,7 @@ export default function Pricing() {
                       </div>
                       <p className="text-xs text-muted">
                         Write users: {pricing.writePrice}/mo · Read users:{" "}
-                        {pricing.readPrice}/mo
+                        {pricing.readPrice === "Free" ? "Free" : `${pricing.readPrice}/mo`}
                       </p>
                     </div>
                   )}
@@ -280,16 +313,24 @@ export default function Pricing() {
                 )}
 
                 {/* CTA */}
-                <a
-                  href={tier.ctaHref}
-                  className={`block w-full text-center rounded-full py-3 text-sm font-semibold transition-all ${
-                    tier.highlighted
-                      ? "bg-primary text-white hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
-                      : "glass hover:bg-surface-hover text-foreground"
-                  }`}
-                >
-                  {tier.cta}
-                </a>
+                {COMING_SOON ? (
+                  <span
+                    className="mt-auto block w-full text-center rounded-full py-3 text-sm font-semibold bg-muted/30 text-muted cursor-not-allowed"
+                  >
+                    Coming Soon
+                  </span>
+                ) : (
+                  <a
+                    href={tier.ctaHref}
+                    className={`mt-auto block w-full text-center rounded-full py-3 text-sm font-semibold transition-all ${
+                      tier.highlighted
+                        ? "bg-primary text-white hover:bg-primary-light hover:shadow-lg hover:shadow-primary/25"
+                        : "glass hover:bg-surface-hover text-foreground"
+                    }`}
+                  >
+                    {tier.cta}
+                  </a>
+                )}
               </div>
             );
           })}

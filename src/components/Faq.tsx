@@ -1,61 +1,136 @@
 "use client";
 
-import { useState } from "react";
+import { JSX, useState } from "react";
 
 const faqs = [
   {
     question: "What counts as an active user?",
     answer:
-      "An active write user (AWU) is anyone who commits, locks files, creates branches, or merges pull requests in a given month. An active read user (ARU) is anyone who clones, checks out, or reads the repository without making changes. Users who don't interact with the repo that month aren't counted.",
+      (<span>
+        An active write user (AWU) is anyone who commits, locks files,
+        creates branches, or merges pull requests in a given month. An
+        active read user (ARU) is anyone who clones, checks out, or reads
+        the repository without making changes. Users who don't interact
+        with the repo that month aren't counted.
+      </span>),
   },
   {
     question: "How does storage billing work?",
     answer:
-      "Cloud storage is $1/mo for up to 10 GB, then $4.50 per additional 50 GB/mo. 500 GB of bandwidth is included each month, with overages billed at $0.01/GB. If you self-host, storage is entirely on you — use whatever infrastructure you prefer.",
+      (<span>
+        Cloud storage is $1/mo for up to 10 GB, then $4.50 per additional 50 GB/mo.
+        500 GB of bandwidth is included each month, with overages billed at $0.01/GB.
+        If you self-host, storage is entirely on you — use whatever infrastructure you prefer.
+      </span>),
   },
   {
-    question: "What's the $5/mo minimum about?",
+    question: "What's the $5 minimum charge about?",
     answer:
-      "To keep billing simple, cloud accounts have a $5/mo floor. If your usage adds up to less than $5 in a given month, you're charged $5 and the unused remainder becomes credit that rolls into the following month — nothing is wasted.",
+      (<div>
+        <span>Our payment processing fees are a high percentage for small transactions,
+        so to be able to charge you as little as $1 in a particular month, we
+        set a minimum charge of $5.</span><br/>
+        <br/>
+        <span>Here's how billing works:</span>
+        <ol className="list-decimal list-inside space-y-1 mt-2 text-sm text-muted">
+          <li>At the end of each month, we calculate your total charge based on active users and storage.</li>
+          <li>We apply any applicable discounts or credits from prior months.</li>
+          <li>If the total is less than $5, we charge $5 and roll over the difference as credit toward future months.</li>
+          <li>If the total is $5 or more, we charge the full amount as usual.</li>
+        </ol>
+        <br />
+        <strong>If your bill is $0 for the month, no charge is made.</strong>
+      </div>),
+  },
+  {
+    question: "Can I receive a refund for unused credit?",
+    answer:
+      (<span>
+        Yes, up to 6 months after payment! If you have a positive credit balance
+        and would like to request a refund, please contact us at <a href="mailto:support@checkpointvcs.com">support@checkpointvcs.com</a>.
+      </span>),
   },
   {
     question: "What's the difference between Cloud and Self-hosted?",
     answer:
-      "Cloud is fully managed by us — zero setup, automatic updates, built-in storage, and guaranteed uptime. Self-hosted means you run Checkpoint on your own infrastructure. The core is open source and free to self-host; Pro and Studio tiers have a small per-user fee for the additional features.",
+      (<span>
+        Cloud is fully managed by us — zero setup, automatic updates,
+        built-in storage, and guaranteed uptime. Self-hosted means you
+        run Checkpoint on your own infrastructure. The core is open source
+        and free to self-host; Pro and Studio tiers have a small per-user
+        fee for the additional features.
+      </span>),
   },
   {
     question: "Is the open source version really free to self-host?",
     answer:
-      "Yes. The Basic tier — checkouts, locking, branching, and all clients — is completely free when self-hosted. You can find the source and instructions on GitHub. We ask that you respect the license and consider contributing back if you build something useful.",
+      (<span>
+        Yes. The Basic tier — checkouts, locking, branching, and all clients —
+        is completely free when self-hosted. You can find the source and
+        instructions on GitHub. We ask that you respect the license and
+        consider contributing back if you build something useful.
+      </span>),
   },
   {
     question: "What is a \"write user\" vs a \"read user\"?",
     answer:
-      "Write users can make changes — commits, locks, branches, pull requests. Read users can view and download the repository contents but cannot push changes. Read users are cheaper because they consume less infrastructure. Both are only counted in months where they're actually active.",
+      (<span>
+        Write users can make changes — commits, locks, branches, pull requests.
+        Read users can view and download the repository contents but cannot
+        push changes. Read users are cheaper because they consume less infrastructure.
+        Both are only counted in months where they're actually active.
+      </span>),
   },
   {
     question: "Can I mix Cloud and Self-hosted across my team?",
     answer:
-      "No — an organization is on either Cloud or Self-hosted. However, you can run multiple organizations if you genuinely need a split setup.",
+      (<span>
+        No — an organization is on either Cloud or Self-hosted. However, you
+        can run multiple organizations if you genuinely need a split setup.
+      </span>),
   },
   {
     question: "Do you support large binary files like textures, meshes, or video?",
     answer:
-      "That's exactly what Checkpoint is built for. There are no artificial file size limits. Large binaries are stored and transferred efficiently without bloating history, unlike systems that bolt on LFS as an afterthought.",
+      (<span>
+        That's exactly what Checkpoint is built for. There are no artificial
+        file size limits. Large binaries are stored and transferred efficiently
+        without bloating history, unlike systems that bolt on LFS as an afterthought.
+      </span>),
   },
   {
     question: "What is the free trial?",
     answer:
-      "Each new user can claim a one-month trial for an organization that hasn't received one before and is less than a week old. The trial includes up to 3 active users and 10 GB of storage (a $13 value). Usage beyond those limits is billed normally.",
+      (<span>
+        Each new user can claim a one-month trial for an organization that hasn't
+        received one before and is less than a week old. The trial includes up to
+        3 active users and 10 GB of storage (a $13 value). Usage beyond those
+        limits is billed normally.
+      </span>),
+  },
+  {
+    question: "Why don't you have a free storage tier for cloud?",
+    answer:
+      (<span>
+        We're a small team without deep pockets, so we have to be mindful of our costs.
+        Cloud storage isn't free for us, and offering a free tier would lead to abuse
+        and unsustainable expenses. Free tiers from other providers are subsidized by
+        high profit margins in their paid plans
+        It also enables us to offer a flexible pricing model that scales with your usage
+        and reduce our profit margins to pass savings onto you, rather than cutting you off at an arbitrary limit.
+      </span>),
   },
   {
     question: "Can I switch tiers later?",
     answer:
-      "Yes, you can upgrade or downgrade at any time. Upgrades take effect immediately; downgrades apply at the start of the next billing cycle.",
+      (<span>
+        Yes, you can upgrade or downgrade at any time. Upgrades take effect immediately and are prorated;
+        downgrades apply at the start of the next billing cycle.
+      </span>),
   },
 ];
 
-function FaqItem({ question, answer }: { question: string; answer: string }) {
+function FaqItem({ question, answer }: { question: string; answer: JSX.Element }) {
   const [open, setOpen] = useState(false);
 
   return (
