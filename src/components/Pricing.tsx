@@ -49,6 +49,7 @@ const tiers: Tier[] = [
       "File locking",
       "Branching",
       "Unreal Engine, Desktop, CLI, & web clients",
+      "Unlimited users",
     ],
     cta: "Get Started",
     ctaHref: "https://app.checkpointvcs.com",
