@@ -64,8 +64,8 @@ const tiers: Tier[] = [
       label: "/mo per active user",
     },
     selfHosted: {
-      writePrice: "$2",
-      readPrice: "$1",
+      writePrice: "$1",
+      readPrice: "Free",
       label: "/mo per active user",
     },
     features: [
@@ -88,8 +88,8 @@ const tiers: Tier[] = [
       label: "/mo per active user",
     },
     selfHosted: {
-      writePrice: "$6",
-      readPrice: "$3",
+      writePrice: "$4",
+      readPrice: "$2",
       label: "/mo per active user",
     },
     features: [
