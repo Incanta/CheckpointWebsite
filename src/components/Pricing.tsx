@@ -5,7 +5,7 @@ import { COMING_SOON } from "@/config";
 
 type HostingMode = "cloud" | "self-hosted";
 
-interface Tier {
+export interface Tier {
   name: string;
   enabled: boolean;
   description: string;
@@ -29,7 +29,7 @@ interface Tier {
   ctaHref: string;
 }
 
-const tiers: Tier[] = [
+export const tiers: Tier[] = [
   {
     name: "Basic",
     enabled: true,

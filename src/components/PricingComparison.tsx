@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { tiers, Tier } from "./Pricing";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Edit this data to update the pricing calculator
@@ -45,13 +46,25 @@ interface Provider {
   note?: string;
 }
 
+const basicTier: Tier = tiers.find(tier => tier.name.toLowerCase() === "basic")!;
+const proTier: Tier = tiers.find(tier => tier.name.toLowerCase() === "pro")!;
+const studioTier: Tier = tiers.find(tier => tier.name.toLowerCase() === "studio")!;
+
+function stringTierPrice(tier: Tier, hosting: HostingType): number {
+  const priceStr = hosting === "self-hosted" ? tier.selfHosted.writePrice : tier.cloud.writePrice;
+  return Number(priceStr.replace("Free", "0").replace("$", ""));
+}
+
 const PROVIDERS: Provider[] = [
   {
     name: "Checkpoint",
     isUs: true,
     color: "#6D00F7",
     monthlyCost: (users, gb, _revenue, plan, hosting) => {
-      const pricePerUser = hosting === "self-hosted" ? (plan === "basic" ? 0 : plan === "pro" ? 2 : 6) : (plan === "basic" ? 3 : plan === "pro" ? 6 : 14);
+      const pricePerUser = stringTierPrice(
+        plan === "basic" ? basicTier : plan === "pro" ? proTier : studioTier,
+        hosting
+      );
       const seatCost = users * pricePerUser;
       const storageCost = hosting === "self-hosted" ? 0 : gb <= 10 ? 1 : 1 + Math.ceil((gb - 10) / 50) * 4.5;
       return [storageCost, seatCost + storageCost];
