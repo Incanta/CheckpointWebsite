@@ -7,6 +7,7 @@ import PerformanceMetrics from "@/components/PerformanceMetrics";
 import PricingComparison from "@/components/PricingComparison";
 import Faq from "@/components/Faq";
 import Newsletter from "@/components/Newsletter";
+import RecentPosts from "@/components/RecentPosts";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         <PricingComparison />
         <Faq />
         <Newsletter />
+        {/* <RecentPosts /> */}
       </main>
       <Footer />
     </>

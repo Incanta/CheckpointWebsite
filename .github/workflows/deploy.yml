@@ -32,8 +32,23 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      # Build Docusaurus first (generates blog archive for Next.js)
+      - name: Build Docusaurus
+        working-directory: docusaurus
+        run: yarn docusaurus build
+
+      - name: Generate blog archive
+        working-directory: docusaurus
+        run: node gen-blog-archive.js
+
+      # Build Next.js (uses blog-archive.json from Docusaurus)
       - name: Build
         run: yarn build
+
+      # Merge Docusaurus output into Next.js output
+      - name: Merge Docusaurus into output
+        working-directory: docusaurus
+        run: node move-build.js
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -3,11 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "yarn@4.13.0",
+  "workspaces": [
+    "docusaurus"
+  ],
   "scripts": {
-    "dev": "next dev -p 6425",
+    "dev": "concurrently -n next,docs -c blue,magenta \"next dev -p 6425\" \"yarn workspace checkpoint-docs start\"",
     "build": "next build",
     "start": "next start -p 6425",
     "lint": "next lint"
+  },
+  "resolutions": {
+    "webpack": "5.97.1"
   },
   "dependencies": {
     "next": "^16.2.1",
@@ -20,6 +26,7 @@
     "@types/node": "^22.15.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "concurrently": "^9.1.2",
     "eslint": "^9.25.0",
     "eslint-config-next": "^16.2.1",
     "tailwindcss": "^4.1.3",

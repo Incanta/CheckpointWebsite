@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# blog archive (generated during CI)
+/src/blog-archive.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
