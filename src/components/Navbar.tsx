@@ -8,6 +8,7 @@ import { useState } from "react";
 const navLinks = [
   { label: "Features", href: "#features" },
   { label: "Pricing", href: "#pricing" },
+  { label: "Contact", href: "/contact" },
   {
     label: "GitHub",
     href: "https://github.com/Incanta/Checkpoint",

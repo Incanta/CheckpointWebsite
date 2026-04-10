@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { tiers, Tier } from "./Pricing";
+import { tiers, Tier, StorageCostPerGb } from "./Pricing";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Edit this data to update the pricing calculator
@@ -39,7 +39,7 @@ interface Provider {
    * Function that returns total monthly cost given user count, storage in GB,
    * the company's annual revenue tier, and for Checkpoint specifically,
    * the selected plan and hosting type.
-   * Keep these simple — they're evaluated on every slider change.
+   * Keep these simple; they're evaluated on every slider change.
    */
   monthlyCost: (users: number, storageGb: number, revenue: RevenueTier, plan: CheckpointPlan, hosting: HostingType) => number | [number, number];
   /** Note shown below price (e.g. free tier caveats) */
@@ -66,7 +66,7 @@ const PROVIDERS: Provider[] = [
         hosting
       );
       const seatCost = users * pricePerUser;
-      const storageCost = hosting === "self-hosted" ? 0 : gb <= 10 ? 1 : 1 + Math.ceil((gb - 10) / 50) * 4.5;
+      const storageCost = hosting === "self-hosted" ? 0 : gb <= 10 ? 1 : 1 + Math.ceil((gb - 10) / 50) * StorageCostPerGb * 50;
       return [storageCost, seatCost + storageCost];
     },
     note: "Cost depends on active users",
@@ -85,7 +85,7 @@ const PROVIDERS: Provider[] = [
   },
   {
     name: "Unity Version Control",
-    disabled: true,
+    disabled: false,
     color: "#F0C830",
     monthlyCost: (users, gb, revenue, _plan, hosting) => {
       if (revenue === "gt200k") {
@@ -349,7 +349,7 @@ export default function PricingComparison() {
 
         <p className="mt-8 text-xs text-muted/50 text-center max-w-xl mx-auto">
           Estimates based on publicly available pricing pages as of Apr 2026.
-          Actual costs may vary by plan, region, and negotiated contracts — verify
+          Actual costs may vary by plan, region, and negotiated contracts; verify
           with each provider. Self-hosted storage costs are not included due to
           high variability.
         </p>

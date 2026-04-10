@@ -62,9 +62,30 @@ export default function Hero() {
           </span>
         </h1>
 
+        {/* Speed callout */}
+        <div className="flex justify-center mb-6">
+          <a
+            href="#performance"
+            className="inline-flex items-center gap-3 glass-primary rounded-full px-6 py-2.5 transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/20"
+          >
+            <span className="text-sm sm:text-base font-medium text-foreground">
+              up to
+            </span>
+            <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-primary-light to-accent bg-clip-text text-transparent">
+              73%
+            </span>
+            <span className="text-sm sm:text-base font-medium text-foreground">
+              faster than Perforce
+            </span>
+            <svg className="w-4 h-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+        </div>
+
         {/* Subtitle */}
         <p className="mx-auto max-w-2xl text-lg sm:text-xl text-muted leading-relaxed mb-10">
-          Checkpoint is a modern VCS built for media-heavy projects — games,
+          Checkpoint is a modern VCS built for media-heavy projects: games,
           film, product design, architecture, and more. Fast checkouts, file
           locking, and massive file support, out of the box.
         </p>

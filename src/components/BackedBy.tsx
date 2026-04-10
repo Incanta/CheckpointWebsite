@@ -24,7 +24,7 @@ export default function BackedBy() {
           </h2>
           <p className="mx-auto max-w-2xl text-muted text-lg leading-relaxed">
             No investors. No board. No pressure to &ldquo;10x&rdquo; next
-            quarter. We&apos;re bootstrapped — which means we answer to our
+            quarter. We&apos;re bootstrapped, which means we answer to our
             users, not shareholders. The savings from not chasing infinite growth
             get passed directly to you.
           </p>
@@ -51,7 +51,7 @@ export default function BackedBy() {
             .&rdquo;
           </p>
           <p className="mt-3 text-sm text-muted">
-            — The Checkpoint team, happily unfunded since day one
+            - The Checkpoint team, happily unfunded since day one
           </p>
         </div>
       </div>

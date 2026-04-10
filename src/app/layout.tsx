@@ -13,14 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Checkpoint VCS — Version Control for Creative Workflows",
+  title: "Checkpoint • Version Control for Creative Workflows",
   description:
-    "Checkpoint is a modern version control system built for media workflows — games, film, product design, architecture, and more. Built by Incanta.",
+    "Checkpoint is a modern version control system built for media workflows • games, film, product design, architecture, and more. Built by Incanta.",
   metadataBase: new URL("https://checkpointvcs.com"),
   openGraph: {
-    title: "Checkpoint VCS — Version Control for Creative Workflows",
+    title: "Checkpoint • Version Control for Creative Workflows",
     description:
-      "A modern version control system built for media workflows — games, film, product design, architecture, and more.",
+      "A modern version control system built for media workflows • games, film, product design, architecture, and more.",
     url: "https://checkpointvcs.com",
     siteName: "Checkpoint VCS",
     type: "website",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Checkpoint VCS",
     description:
-      "Modern version control for media workflows — games, film, product design, architecture, and more.",
+      "Modern version control for media workflows • games, film, product design, architecture, and more.",
   },
 };
 

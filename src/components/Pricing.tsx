@@ -5,6 +5,8 @@ import { COMING_SOON } from "@/config";
 
 type HostingMode = "cloud" | "self-hosted";
 
+export const StorageCostPerGb = 0.05;
+
 export interface Tier {
   name: string;
   enabled: boolean;
@@ -21,6 +23,7 @@ export interface Tier {
   };
   features: string[];
   selfHostedFeatures?: string[];
+  cloudFeaturesFirst?: boolean;
   cloudFeatures?: string[];
   selfHostedAddons?: string[];
   cloudAddons?: string[];
@@ -44,12 +47,17 @@ export const tiers: Tier[] = [
       readPrice: "Free",
       label: "",
     },
+    cloudFeaturesFirst: true,
+    cloudFeatures: [
+      "30 Day Free Trial",
+      "25 GB Free",
+    ],
     features: [
+      "Unlimited users",
       "Checkouts",
       "File locking",
       "Branching",
       "Unreal Engine, Desktop, CLI, & web clients",
-      "Unlimited users",
     ],
     cta: "Get Started",
     ctaHref: "https://app.checkpointvcs.com",
@@ -107,6 +115,7 @@ export const tiers: Tier[] = [
     selfHostedAddons: [
       // "Enterprise SAML / SSO",
       "Priority support",
+      "Offline / air-gapped network deployment",
     ],
     cloudAddons: [
       "Single-tenant deployment",
@@ -135,8 +144,8 @@ export default function Pricing() {
             Usage-based pricing
           </h2>
           <p className="mx-auto max-w-2xl text-muted text-lg mb-8">
-            Pay per active user. Storage starts at $1/mo for up to 10 GB, then
-            $4.50 per 50 GB/mo. Bandwidth included.
+            Pay per active user. Your first 25 GB are free, then
+            ${(StorageCostPerGb * 50).toFixed(2)} per 50 GB/mo. Bandwidth included.
           </p>
 
           {/* Hosting toggle */}
@@ -175,10 +184,19 @@ export default function Pricing() {
 
             const tierFeatures = [
               ...tier.features,
-              ...(mode === "cloud"
-                ? tier.cloudFeatures || []
-                : tier.selfHostedFeatures || []),
+              ...(mode === "self-hosted" ? tier.selfHostedFeatures || [] : []),
             ];
+
+            if (tier.cloudFeaturesFirst && mode === "cloud") {
+              tierFeatures.unshift(
+                ...(tier.cloudFeatures || [])
+              );
+            } else if (mode === "cloud") {
+              tierFeatures.push(
+                ...(tier.cloudFeatures || [])
+              );
+            }
+
             const addons =
               mode === "self-hosted"
                 ? tier.selfHostedAddons || []
@@ -285,7 +303,7 @@ export default function Pricing() {
                 {addons.length > 0 && (
                   <div className="mb-8">
                     <p className="text-xs uppercase tracking-wider text-muted/50 font-medium mb-3">
-                      Available add-ons · Contact us
+                      Available add-ons · <a href="/contact" className="text-primary hover:underline">Contact us</a>
                     </p>
                     <ul className="space-y-3">
                       {addons.map((addon) => (
@@ -340,8 +358,12 @@ export default function Pricing() {
         {/* Storage & billing notes */}
         <div className="mt-8 space-y-2 max-w-lg mx-auto text-center">
           <p className="text-xs text-muted/60">
-            Cloud storage: $1/mo for up to 10 GB, then $4.50 per additional 50 GB/mo.
-            500 GB bandwidth included. Self-hosted storage is managed by you.
+            Cloud storage: Free for first 25 GB, then $2.50 per additional 50 GB/mo.
+            Unlimited bandwidth included. Self-hosted storage is managed by you.
+          </p>
+          <p className="text-xs text-muted/60">
+            To continue to provide our affordable pricing, we will automatically
+            charge an active write user fee if you have no write usage in 12 months.
           </p>
           <p className="text-xs text-muted/60">
             If you have an outstanding balance with insufficient credit, we charge a <span className="text-muted/80 font-medium">$5 minimum{" "}</span>. Any remainder rolls over as credit toward future months.

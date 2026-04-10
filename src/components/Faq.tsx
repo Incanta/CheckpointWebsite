@@ -20,7 +20,7 @@ const faqs = [
       (<span>
         Cloud storage is $1/mo for up to 10 GB, then $4.50 per additional 50 GB/mo.
         500 GB of bandwidth is included each month, with overages billed at $0.01/GB.
-        If you self-host, storage is entirely on you — use whatever infrastructure you prefer.
+        If you self-host, storage is entirely on you; use whatever infrastructure you prefer.
       </span>),
   },
   {
@@ -47,14 +47,14 @@ const faqs = [
     answer:
       (<span>
         Yes, up to 6 months after payment! If you have a positive credit balance
-        and would like to request a refund, please contact us at <a href="mailto:support@checkpointvcs.com">support@checkpointvcs.com</a>.
+        and would like to request a refund, please <a href="/contact" className="text-primary hover:underline">contact us</a>.
       </span>),
   },
   {
     question: "What's the difference between Cloud and Self-hosted?",
     answer:
       (<span>
-        Cloud is fully managed by us — zero setup, automatic updates,
+        Cloud is fully managed by us: zero setup, automatic updates,
         built-in storage, and guaranteed uptime. Self-hosted means you
         run Checkpoint on your own infrastructure. The core is open source
         and free to self-host; Pro and Studio tiers have a small per-user
@@ -65,7 +65,7 @@ const faqs = [
     question: "Is the open source version really free to self-host?",
     answer:
       (<span>
-        Yes. The Basic tier — checkouts, locking, branching, and all clients —
+        Yes. The Basic tier, checkouts, locking, branching, and all clients,
         is completely free when self-hosted. You can find the source and
         instructions on GitHub. We ask that you respect the license and
         consider contributing back if you build something useful.
@@ -75,7 +75,7 @@ const faqs = [
     question: "What is a \"write user\" vs a \"read user\"?",
     answer:
       (<span>
-        Write users can make changes — commits, locks, branches, pull requests.
+        Write users can make changes: commits, locks, branches, pull requests.
         Read users can view and download the repository contents but cannot
         push changes. Read users are cheaper because they consume less infrastructure.
         Both are only counted in months where they're actually active.
@@ -85,7 +85,7 @@ const faqs = [
     question: "Can I mix Cloud and Self-hosted across my team?",
     answer:
       (<span>
-        No — an organization is on either Cloud or Self-hosted. However, you
+        No, an organization is on either Cloud or Self-hosted. However, you
         can run multiple organizations if you genuinely need a split setup.
       </span>),
   },

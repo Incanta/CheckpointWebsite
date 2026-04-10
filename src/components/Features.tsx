@@ -2,7 +2,7 @@ const features = [
   {
     title: "Checkouts & Locking",
     description:
-      "Exclusive file locking prevents conflicts on binary assets. Check out files, make changes, and push — no merge headaches on art files.",
+      "Exclusive file locking prevents conflicts on binary assets. Check out files, make changes, and push • no merge headaches on art files.",
     icon: (
       <svg
         className="w-6 h-6"
@@ -42,7 +42,7 @@ const features = [
   {
     title: "Massive File Support",
     description:
-      "Designed from the ground up for large binary files. No file size limits. Textures, meshes, CAD files — it all just works.",
+      "Designed from the ground up for large binary files. No file size limits. Textures, meshes, CAD files - it all just works.",
     icon: (
       <svg
         className="w-6 h-6"
@@ -82,7 +82,7 @@ const features = [
   {
     title: "All Clients",
     description:
-      "CLI, desktop app, and web UI — pick the workflow that fits your team. Designers and developers get first-class tools.",
+      "Desktop app, Unreal Engine plugin, CLI, and web UI. Pick the workflow that fits your team. Designers and developers get first-class tools.",
     icon: (
       <svg
         className="w-6 h-6"

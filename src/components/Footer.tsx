@@ -38,6 +38,12 @@ export default function Footer() {
               GitHub
             </a>
             <a
+              href="/contact"
+              className="hover:text-foreground transition-colors"
+            >
+              Contact
+            </a>
+            <a
               href="https://app.checkpointvcs.com"
               className="hover:text-foreground transition-colors"
             >
