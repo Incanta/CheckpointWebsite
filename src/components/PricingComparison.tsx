@@ -66,7 +66,7 @@ const PROVIDERS: Provider[] = [
         hosting
       );
       const seatCost = users * pricePerUser;
-      const storageCost = hosting === "self-hosted" ? 0 : gb <= 10 ? 1 : 1 + Math.ceil((gb - 10) / 50) * StorageCostPerGb * 50;
+      const storageCost = hosting === "self-hosted" ? 0 : Math.ceil((gb - 10) / 50) * StorageCostPerGb * 50;
       return [storageCost, seatCost + storageCost];
     },
     note: "Cost depends on active users",

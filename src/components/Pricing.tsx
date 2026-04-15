@@ -38,8 +38,8 @@ export const tiers: Tier[] = [
     enabled: true,
     description: "Core version control for small teams getting started.",
     cloud: {
-      writePrice: "$3",
-      readPrice: "$1.50",
+      writePrice: "$4",
+      readPrice: "$2",
       label: "/mo per active user",
     },
     selfHosted: {
@@ -49,8 +49,7 @@ export const tiers: Tier[] = [
     },
     cloudFeaturesFirst: true,
     cloudFeatures: [
-      "30 Day Free Trial",
-      "25 GB Free",
+      "30 Day Free Trial (up to 25 GB storage included)",
     ],
     features: [
       "Unlimited users",
@@ -67,13 +66,13 @@ export const tiers: Tier[] = [
     enabled: true,
     description: "Collaboration features for growing teams.",
     cloud: {
-      writePrice: "$6",
-      readPrice: "$3",
+      writePrice: "$9",
+      readPrice: "$4",
       label: "/mo per active user",
     },
     selfHosted: {
-      writePrice: "$1",
-      readPrice: "Free",
+      writePrice: "$4",
+      readPrice: "$2",
       label: "/mo per active user",
     },
     features: [
@@ -91,13 +90,13 @@ export const tiers: Tier[] = [
     enabled: true,
     description: "Enterprise-grade for large studios and organizations.",
     cloud: {
-      writePrice: "$14",
-      readPrice: "$7",
+      writePrice: "$24",
+      readPrice: "$12",
       label: "/mo per active user",
     },
     selfHosted: {
-      writePrice: "$4",
-      readPrice: "$2",
+      writePrice: "$9",
+      readPrice: "$4",
       label: "/mo per active user",
     },
     features: [
@@ -144,8 +143,7 @@ export default function Pricing() {
             Usage-based pricing
           </h2>
           <p className="mx-auto max-w-2xl text-muted text-lg mb-8">
-            Pay per active user. Your first 25 GB are free, then
-            ${(StorageCostPerGb * 50).toFixed(2)} per 50 GB/mo. Bandwidth included.
+            Pay per active user - ${(StorageCostPerGb * 50).toFixed(2)} per 50 GB/mo - Bandwidth included
           </p>
 
           {/* Hosting toggle */}
@@ -358,8 +356,7 @@ export default function Pricing() {
         {/* Storage & billing notes */}
         <div className="mt-8 space-y-2 max-w-lg mx-auto text-center">
           <p className="text-xs text-muted/60">
-            Cloud storage: Free for first 25 GB, then $2.50 per additional 50 GB/mo.
-            Unlimited bandwidth included. Self-hosted storage is managed by you.
+            Cloud storage: $2.50 per 50 GB/mo. Unlimited bandwidth included. Self-hosted storage is managed by you.
           </p>
           <p className="text-xs text-muted/60">
             To continue to provide our affordable pricing, we will automatically

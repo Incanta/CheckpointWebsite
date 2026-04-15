@@ -18,9 +18,8 @@ const faqs = [
     question: "How does storage billing work?",
     answer:
       (<span>
-        Cloud storage is free for your first 25 GB, then $2.50 per additional 50 GB/mo.
-        Bandwidth is free. If you self-host, storage is entirely on you;
-        use whatever infrastructure you prefer.
+        Cloud storage costs $2.50 per 50 GB/mo. Bandwidth is free. For example,
+        if you use 51 GB, you will be charged $5/mo.
       </span>),
   },
   {
@@ -29,7 +28,8 @@ const faqs = [
       (<div>
         <span>Our payment processing fees are a high percentage for small transactions,
         so to be able to charge you as little as $1 in a particular month, we
-        set a minimum charge of $5.</span><br/>
+        set a minimum charge of $5. We do not charge the minimum if your total is $0.
+        We do not charge the minimum on your final invoice.</span><br/>
         <br/>
         <span>Here's how billing works:</span>
         <ol className="list-decimal list-inside space-y-1 mt-2 text-sm text-muted">
