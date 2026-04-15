@@ -18,9 +18,9 @@ const faqs = [
     question: "How does storage billing work?",
     answer:
       (<span>
-        Cloud storage is $1/mo for up to 10 GB, then $4.50 per additional 50 GB/mo.
-        500 GB of bandwidth is included each month, with overages billed at $0.01/GB.
-        If you self-host, storage is entirely on you; use whatever infrastructure you prefer.
+        Cloud storage is free for your first 25 GB, then $2.50 per additional 50 GB/mo.
+        Bandwidth is free. If you self-host, storage is entirely on you;
+        use whatever infrastructure you prefer.
       </span>),
   },
   {
@@ -106,18 +106,6 @@ const faqs = [
         received one before and is less than a week old. The trial includes up to
         3 active users and 10 GB of storage (a $13 value). Usage beyond those
         limits is billed normally.
-      </span>),
-  },
-  {
-    question: "Why don't you have a free storage tier for cloud?",
-    answer:
-      (<span>
-        We're a small team without deep pockets, so we have to be mindful of our costs.
-        Cloud storage isn't free for us, and offering a free tier would lead to abuse
-        and unsustainable expenses. Free tiers from other providers are subsidized by
-        high profit margins in their paid plans
-        It also enables us to offer a flexible pricing model that scales with your usage
-        and reduce our profit margins to pass savings onto you, rather than cutting you off at an arbitrary limit.
       </span>),
   },
   {
