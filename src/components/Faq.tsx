@@ -22,26 +22,26 @@ const faqs = [
         if you use 51 GB, you will be charged $5/mo.
       </span>),
   },
-  {
-    question: "What's the $5 minimum charge about?",
-    answer:
-      (<div>
-        <span>Our payment processing fees are a high percentage for small transactions,
-        so to be able to charge you as little as $1 in a particular month, we
-        set a minimum charge of $5. We do not charge the minimum if your total is $0.
-        We do not charge the minimum on your final invoice.</span><br/>
-        <br/>
-        <span>Here's how billing works:</span>
-        <ol className="list-decimal list-inside space-y-1 mt-2 text-sm text-muted">
-          <li>At the end of each month, we calculate your total charge based on active users and storage.</li>
-          <li>We apply any applicable discounts or credits from prior months.</li>
-          <li>If the total is less than $5, we charge $5 and roll over the difference as credit toward future months.</li>
-          <li>If the total is $5 or more, we charge the full amount as usual.</li>
-        </ol>
-        <br />
-        <strong>If your bill is $0 for the month, no charge is made.</strong>
-      </div>),
-  },
+  // {
+  //   question: "What's the $5 minimum charge about?",
+  //   answer:
+  //     (<div>
+  //       <span>Our payment processing fees are a high percentage for small transactions,
+  //       so to be able to charge you as little as $1 in a particular month, we
+  //       set a minimum charge of $5. We do not charge the minimum if your total is $0.
+  //       We do not charge the minimum on your final invoice.</span><br/>
+  //       <br/>
+  //       <span>Here's how billing works:</span>
+  //       <ol className="list-decimal list-inside space-y-1 mt-2 text-sm text-muted">
+  //         <li>At the end of each month, we calculate your total charge based on active users and storage.</li>
+  //         <li>We apply any applicable discounts or credits from prior months.</li>
+  //         <li>If the total is less than $5, we charge $5 and roll over the difference as credit toward future months.</li>
+  //         <li>If the total is $5 or more, we charge the full amount as usual.</li>
+  //       </ol>
+  //       <br />
+  //       <strong>If your bill is $0 for the month, no charge is made.</strong>
+  //     </div>),
+  // },
   {
     question: "Can I receive a refund for unused credit?",
     answer:

@@ -365,9 +365,9 @@ export default function Pricing() {
             To continue to provide our affordable pricing, we will automatically
             charge an active write user fee if you have no write usage in 12 months.
           </p>
-          <p className="text-xs text-muted/60">
+          {/* <p className="text-xs text-muted/60">
             If you have an outstanding balance with insufficient credit, we charge a <span className="text-muted/80 font-medium">$5 minimum{" "}</span>. Any remainder rolls over as credit toward future months.
-          </p>
+          </p> */}
         </div>
       </div>
     </section>
