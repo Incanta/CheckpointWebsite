@@ -160,13 +160,16 @@ export default function Pricing() {
             </button>
             <button
               onClick={() => setMode("self-hosted")}
-              className={`rounded-full px-6 py-2 text-sm font-medium transition-all ${
+              className={`relative rounded-full px-6 py-2 text-sm font-medium transition-all ${
                 mode === "self-hosted"
                   ? "bg-primary text-white shadow-lg shadow-primary/25"
                   : "text-muted hover:text-foreground"
               }`}
             >
               Self-hosted
+              <span className="absolute -top-0.5 -right-2 rounded-full bg-green-500/15 px-1.5 py-0.5 text-[10px] font-bold uppercase leading-none text-green-400 tracking-wide pointer-events-none">
+                Free
+              </span>
             </button>
           </div>
         </div>
