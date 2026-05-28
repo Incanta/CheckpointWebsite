@@ -53,6 +53,7 @@ export const tiers: Tier[] = [
     ],
     features: [
       "Unlimited users",
+      "No revenue cap",
       "Checkouts",
       "File locking",
       "Branching",
@@ -126,7 +127,7 @@ export const tiers: Tier[] = [
 ];
 
 export default function Pricing() {
-  const [mode, setMode] = useState<HostingMode>("cloud");
+  const [mode, setMode] = useState<HostingMode>("self-hosted");
 
   return (
     <section id="pricing" className="relative py-32 overflow-hidden">
